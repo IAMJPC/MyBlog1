@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        .header {font-size: 100%}
+        .foo {padding: 200px}
+        .info span {padding-right: 100px}
+        .summary {padding-top: 200px}
+    </style>
+
+    <title>MyBlog</title>
+</head>
+<body>
+    <div class="header">Blogs of JPC</div>
+
+    {% for foo in blog %}
+
+        <div align="center" class="foo">
+            <div class="blogTitle">
+                <a href="{% url 'blog_get_details' foo.id%}">{{ foo.blogTitle }}</a>
+            </div>
+
+            <div class="info">
+                <span class="blogAuthor" style="color: #4a86e8;">{{ foo.blogAuthor }}</span>
+                <span class="blogReleasedTime" style="color: #6aa84e;">{{ foo.blogReleasedTime | date:"Y-m-d H:i" }}</span>
+            </div>
+
+            <div class="summary">
+                {{ foo.blogContent | truncatechars:100 }}
+            </div>
+        </div>
+
+    {% endfor %}
+</body>
+</html>
